@@ -52,3 +52,19 @@ with open('insurance.csv', 'r') as csvfile:
         print('The average cost for person carry out: ' + str(round(avg_cost, 2)) + ' dollars.')
 
     average_costs(csv_reader)
+    csvfile.seek(0)
+    # Finding which region has the most cost-generating patients :>
+    csv_reader = csv.reader(csvfile)
+    def costly_region(csvreader):
+        regions = []
+        for row in csvreader:
+            region = row[-2]
+            if region in regions:
+                continue
+            else:
+                regions.append(region)
+        regions.pop(0)
+
+        return regions
+
+    print(costly_region(csv_reader))
